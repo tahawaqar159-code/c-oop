@@ -12,15 +12,6 @@ private:
     float cgpa;
 
 public:
-    Student()
-    {
-        id = 0;
-        name = "";
-        age = 0;
-        department = "";
-        cgpa = 0.0;
-    }
-
     void addStudent()
     {
         cout << "\nEnter Student ID: ";
@@ -45,24 +36,69 @@ public:
 
     void displayStudent()
     {
-        cout << "\n-----------------------------\n";
-        cout << "Student ID : " << id << endl;
+        cout << "\n----------------------------------\n";
+        cout << "ID         : " << id << endl;
         cout << "Name       : " << name << endl;
         cout << "Age        : " << age << endl;
         cout << "Department : " << department << endl;
         cout << "CGPA       : " << cgpa << endl;
-        cout << "-----------------------------\n";
+        cout << "----------------------------------\n";
     }
 };
 
 int main()
 {
-    Student s;
+    Student students[100];
+    int totalStudents = 0;
+    int choice;
 
-    s.addStudent();
+    do
+    {
+        cout << "\n========== Student Management System ==========\n";
+        cout << "1. Add Student\n";
+        cout << "2. Display All Students\n";
+        cout << "3. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
 
-    cout << "\nStudent Record\n";
-    s.displayStudent();
+        switch (choice)
+        {
+        case 1:
+            if (totalStudents < 100)
+            {
+                students[totalStudents].addStudent();
+                totalStudents++;
+                cout << "\nStudent Added Successfully!\n";
+            }
+            else
+            {
+                cout << "\nStudent limit reached!\n";
+            }
+            break;
+
+        case 2:
+            if (totalStudents == 0)
+            {
+                cout << "\nNo students found.\n";
+            }
+            else
+            {
+                for (int i = 0; i < totalStudents; i++)
+                {
+                    students[i].displayStudent();
+                }
+            }
+            break;
+
+        case 3:
+            cout << "\nThank you for using the Student Management System.\n";
+            break;
+
+        default:
+            cout << "\nInvalid Choice! Try Again.\n";
+        }
+
+    } while (choice != 3);
 
     return 0;
 }
