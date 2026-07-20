@@ -56,7 +56,7 @@ public:
 class Admin {
 public:
     void addProducts(Product products[], int &count) {
-        if (count >= 20) {
+        if (count >= 200) {
             cout << "Product List Full!\n";
             return;
         }
@@ -82,7 +82,7 @@ public:
 };
 
 class ShoppingCart {
-    Product cart[20];
+    Product cart[200];
     int cartCount;
 
 public:
@@ -143,7 +143,7 @@ public:
 
 int main() {
 
-    Product products[20];
+    Product products[200];
 
     Admin admin;
 
