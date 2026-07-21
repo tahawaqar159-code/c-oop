@@ -112,6 +112,76 @@ public:
     }
 };
 
+class student {
+    int studentid;
+    string studentname;
+    string department;
+    string semester;
+
+    public :
+    student() {
+        studentid = 0;
+        studentname = "";
+        department = "";
+        semester = "";
+    }   
+    student(int id, string name, string dept, string sem) {
+        studentid = id;
+        studentname = name;
+        department = dept;
+        semester = sem;
+    }
+    void registerstudent(){
+        cout << "Enter Student ID: ";
+        cin >> studentid;
+        cin.ignore();
+        cout << " enter Student Name: ";
+        getline(cin, studentname);
+        cout << "Enter Department: ";
+        getline ( cin, department);
+        cout << "Enter Semester: "; 
+        getline(cin, semester);
+        cout << "Student Registered Successfully!\n";
+    }
+    void displaystudent (){
+        cout << " student id : " << studentid << endl ;
+        cout<< " student name : " << studentname << endl ;
+        cout << " studenrt's department is : " << department << endl ;
+        cout << " student's semester is  : " << semester << endl ;
+    }
+    void updatestudent(){
+        int id;
+        cout << "Enter Student ID to update: ";
+        cin >> id;
+        cin.ignore();
+        if (id == studentid) {
+            cout << "Student Found!\n";
+            cout << "Enter New Student Name: ";
+            getline(cin, studentname);
+            cout << "Enter New Department: ";
+            getline(cin, department);
+            cout << "Enter New Semester: ";
+            getline(cin, semester);
+            cout << "Student Updated Successfully!\n";
+        }
+        else {
+            cout << "Student Not Found!\n";
+        }
+    }
+    void searchstudent() {
+        int id;
+        cout << "Enter Student ID to search: ";
+        cin >> id;
+        if (id == studentid) {
+            cout << "Student Found!\n";
+            displaystudent();
+        }
+        else {
+            cout << "Student Not Found!\n";
+        }
+    }
+};
+
 int main() {
 
     Book b1;
