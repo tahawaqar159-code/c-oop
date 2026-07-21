@@ -2,6 +2,7 @@
 #include <string>
 using namespace std;
 
+// CLASS BOOK
 class Book {
     int bookId;
     string bookName;
@@ -111,7 +112,7 @@ public:
         }
     }
 };
-
+//  STUDENT CLASS 
 class student {
     int studentid;
     string studentname;
@@ -182,13 +183,73 @@ class student {
     }
 };
 
-int main() {
+class Librarian
+{
+private:
+    int librarianID;
+    string librarianName;
 
+public:
+    Librarian() {
+        librarianID = 0;
+        librarianName = "";
+    }
+    Librarian(int id, string name) {
+        librarianID = id;
+        librarianName = name;
+    }
+    void registerLibrarian()   {
+        cout << "Enter Librarian ID: ";
+        cin >> librarianID;
+        cin.ignore();
+        cout << "Enter Librarian Name: ";
+        getline(cin, librarianName);
+        cout << "Librarian Registered Successfully!\n";
+    }
+    void displayLibrarian()    {
+        cout << "\n----- Librarian Details -----\n";
+        cout << "ID   : " << librarianID << endl;
+        cout << "Name : " << librarianName << endl;
+    }
+    void addBook(Book &b)
+    {
+        b.addBook();
+    }
+    void searchBook(Book &b)  {
+        b.search();
+    }
+    void updateBook(Book &b)  {
+        b.update();
+    }
+    void borrowBook(Book &b)  {
+        b.borrow();
+    }
+    void returnBook(Book &b)  {
+        b.returnBook();
+    }
+};
+
+// MAIN FUNCTION
+int main() {
+// Create an object of the Book class
     Book b1;
     b1.addBook();
     b1.search();
     b1.update();
     b1.borrow();
     b1.returnBook();
+    // Create objects of the student class
+    // STUDENT S1 , S2
+    student s1 ;
+    student s2 ;
+    s1.registerstudent();
+    s1.displaystudent();
+    s1.updatestudent();
+    s1.searchstudent();
+    s2.registerstudent();
+    s2.displaystudent();
+    s2.updatestudent();
+    s2.searchstudent();
+
     return 0;
 }
