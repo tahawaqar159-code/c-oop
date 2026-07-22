@@ -29,6 +29,18 @@ public:
         category = c;
         isAvailable = true;
     }
+    int getId() const { return bookId; }
+    string getName() const { return bookName; }
+    bool getAvailability() const { return isAvailable; }
+
+    void displayInfo() const {
+        cout << "Book ID      : " << bookId << endl;
+        cout << "Book Name    : " << bookName << endl;
+        cout << "Author       : " << author << endl;
+        cout << "Price        : " << price << endl;
+        cout << "Category     : " << category << endl;
+        cout << "Availability : " << (isAvailable ? "Available" : "Not Available") << endl;
+    }
 
     void addBook() {
         cout << "Enter ID of book to be added: ";
@@ -48,19 +60,12 @@ public:
 
     void search() {
         int id;
-
         cout << "\nEnter ID of the book you want to search: ";
         cin >> id;
 
         if (id == bookId) {
             cout << "\nBook Found!\n";
-            cout << "Book ID      : " << bookId << endl;
-            cout << "Book Name    : " << bookName << endl;
-            cout << "Author       : " << author << endl;
-            cout << "Price        : " << price << endl;
-            cout << "Category     : " << category << endl;
-            cout << "Availability : "
-                 << (isAvailable ? "Available" : "Not Available") << endl;
+            displayInfo();
         }
         else {
             cout << "Book Not Found!\n";
@@ -69,7 +74,6 @@ public:
 
     void update() {
         int id;
-
         cout << "\nEnter ID of the book you want to update: ";
         cin >> id;
         cin.ignore();
@@ -112,45 +116,52 @@ public:
         }
     }
 };
-//  STUDENT CLASS 
+
+// CLASS STUDENT
 class student {
     int studentid;
     string studentname;
     string department;
     string semester;
 
-    public :
+public:
     student() {
         studentid = 0;
         studentname = "";
         department = "";
         semester = "";
-    }   
+    }
+
     student(int id, string name, string dept, string sem) {
         studentid = id;
         studentname = name;
         department = dept;
         semester = sem;
     }
-    void registerstudent(){
+
+    int getId() const { return studentid; }
+
+    void registerstudent() {
         cout << "Enter Student ID: ";
         cin >> studentid;
         cin.ignore();
-        cout << " enter Student Name: ";
+        cout << "Enter Student Name: ";
         getline(cin, studentname);
         cout << "Enter Department: ";
-        getline ( cin, department);
-        cout << "Enter Semester: "; 
+        getline(cin, department);
+        cout << "Enter Semester: ";
         getline(cin, semester);
         cout << "Student Registered Successfully!\n";
     }
-    void displaystudent (){
-        cout << " student id : " << studentid << endl ;
-        cout<< " student name : " << studentname << endl ;
-        cout << " studenrt's department is : " << department << endl ;
-        cout << " student's semester is  : " << semester << endl ;
+
+    void displaystudent() {
+        cout << "Student ID       : " << studentid << endl;
+        cout << "Student Name     : " << studentname << endl;
+        cout << "Department       : " << department << endl;
+        cout << "Semester         : " << semester << endl;
     }
-    void updatestudent(){
+
+    void updatestudent() {
         int id;
         cout << "Enter Student ID to update: ";
         cin >> id;
@@ -169,6 +180,7 @@ class student {
             cout << "Student Not Found!\n";
         }
     }
+
     void searchstudent() {
         int id;
         cout << "Enter Student ID to search: ";
@@ -183,11 +195,9 @@ class student {
     }
 };
 
-// LIBRARIAN CLASS
 
-class Librarian
-{
-private:
+// CLASS LIBRARIAN
+class Librarian {
     int librarianID;
     string librarianName;
 
@@ -196,11 +206,15 @@ public:
         librarianID = 0;
         librarianName = "";
     }
+
     Librarian(int id, string name) {
         librarianID = id;
         librarianName = name;
     }
-    void registerLibrarian()   {
+
+    int getId() const { return librarianID; }
+
+    void registerLibrarian() {
         cout << "Enter Librarian ID: ";
         cin >> librarianID;
         cin.ignore();
@@ -208,31 +222,22 @@ public:
         getline(cin, librarianName);
         cout << "Librarian Registered Successfully!\n";
     }
-    void displayLibrarian()    {
+
+    void displayLibrarian() {
         cout << "\n----- Librarian Details -----\n";
         cout << "ID   : " << librarianID << endl;
         cout << "Name : " << librarianName << endl;
     }
-    void addBook(Book &b)
-    {
-        b.addBook();
-    }
-    void searchBook(Book &b)  {
-        b.search();
-    }
-    void updateBook(Book &b)  {
-        b.update();
-    }
-    void borrowBook(Book &b)  {
-        b.borrow();
-    }
-    void returnBook(Book &b)  {
-        b.returnBook();
-    }
+
+    void addBook(Book &b) { b.addBook(); }
+    void searchBook(Book &b) { b.search(); }
+    void updateBook(Book &b) { b.update(); }
+    void borrowBook(Book &b) { b.borrow(); }
+    void returnBook(Book &b) { b.returnBook(); }
 };
 
-// CLASS FINE 
 
+// CLASS FINE
 class Fine {
     int fineId;
     int studentId;
@@ -253,37 +258,70 @@ public:
         bookId = bid;
         amount = amt;
     }
+
     void calclateFine() {
         int daysLate;
+        cout << "Enter Fine ID: ";
+        cin >> fineId;
+        cout << "Enter Student ID this fine belongs to: ";
+        cin >> studentId;
+        cout << "Enter Book ID this fine belongs to: ";
+        cin >> bookId;
         cout << "Enter number of days late: ";
         cin >> daysLate;
         amount = daysLate * 200;
         cout << "Fine Amount: Rs " << amount << endl;
     }
-    void displayfine(){
-        cout << "Fine ID: " << fineId << endl;
-        cout << "Student ID: " << studentId << endl;
-        cout << "Book ID: " << bookId << endl;
-        cout << "Fine Amount: Rs " << amount << endl;
+
+    void displayfine() {
+        cout << "Fine ID     : " << fineId << endl;
+        cout << "Student ID  : " << studentId << endl;
+        cout << "Book ID     : " << bookId << endl;
+        cout << "Fine Amount : Rs " << amount << endl;
     }
 };
 
-// MAIN FUNCTION
-int main() {
- Book books[100];
-student students[100];
-Librarian librarians[100];
-Fine fines[100];
+// HELPER FUNCTIONS FOR MAIN
 
-int bookCount = 0;
-int studentCount = 0;
-int librarianCount = 0;
-int fineCount = 0;
+int findBookIndex(Book books[], int bookCount, int id) {
+    for (int i = 0; i < bookCount; i++) {
+        if (books[i].getId() == id) return i;
+    }
+    return -1;
+}
+
+int findStudentIndex(student students[], int studentCount, int id) {
+    for (int i = 0; i < studentCount; i++) {
+        if (students[i].getId() == id) return i;
+    }
+    return -1;
+}
+
+int findLibrarianIndex(Librarian librarians[], int librarianCount, int id) {
+    for (int i = 0; i < librarianCount; i++) {
+        if (librarians[i].getId() == id) return i;
+    }
+    return -1;
+}
+
+// MAIN FUNCTION
+
+int main() {
+    const int MAX = 100;
+    Book books[MAX];
+    student students[MAX];
+    Librarian librarians[MAX];
+    Fine fines[MAX];
+
+    int bookCount = 0;
+    int studentCount = 0;
+    int librarianCount = 0;
+    int fineCount = 0;
 
     int choice;
 
     do {
-        cout << "LIBRARY MANAGEMENT SYSTEM\n";
+        cout << "\n===== LIBRARY MANAGEMENT SYSTEM =====\n";
         cout << "1. Librarian Menu\n";
         cout << "2. Student Menu\n";
         cout << "3. Fine Menu\n";
@@ -293,6 +331,7 @@ int fineCount = 0;
 
         switch (choice) {
 
+        //  LIBRARIAN MENU 
         case 1: {
             int librarianChoice;
 
@@ -310,39 +349,124 @@ int fineCount = 0;
                 cin >> librarianChoice;
 
                 switch (librarianChoice) {
-                case 1:
-                    librarians[librarianCount].registerLibrarian();
-                      librarianCount++;
-                    break;
-                case 2:
-                    l1.displayLibrarian();
-                    break; 
-                case 3:
-                   l1.addBook(books[bookCount]);
-                      bookCount++;
-                case 4:
-                   int index;
-                   cout << "Enter Librarian Number: ";
-                   cin >> index;
-
-                   if(index >= 1 && index <= librarianCount)
-                    {
-                     librarians[index-1].displayLibrarian();
+                case 1: {
+                    if (librarianCount >= MAX) {
+                        cout << "Librarian list is full!\n";
+                        break;
                     }
-                       else
-{
-                    cout << "Invalid Librarian!\n";
-}
+                    librarians[librarianCount].registerLibrarian();
+                    librarianCount++;
                     break;
-                case 5:
-                    l1.updateBook(b1);
+                }
+                case 2: {
+                    if (librarianCount == 0) {
+                        cout << "No librarians registered yet!\n";
+                        break;
+                    }
+                    int id;
+                    cout << "Enter Librarian ID to display: ";
+                    cin >> id;
+                    int idx = findLibrarianIndex(librarians, librarianCount, id);
+                    if (idx != -1) {
+                        librarians[idx].displayLibrarian();
+                    }
+                    else {
+                        cout << "Librarian Not Found!\n";
+                    }
                     break;
-                case 6:
-                    l1.borrowBook(b1);
+                }
+                case 3: {
+                    if (librarianCount == 0) {
+                        cout << "No librarians registered! Please register one first.\n";
+                        break;
+                    }
+                    if (bookCount >= MAX) {
+                        cout << "Book list is full!\n";
+                        break;
+                    }
+                    int id;
+                    cout << "Enter Librarian ID performing this action: ";
+                    cin >> id;
+                    int idx = findLibrarianIndex(librarians, librarianCount, id);
+                    if (idx != -1) {
+                        librarians[idx].addBook(books[bookCount]);
+                        bookCount++;
+                    }
+                    else {
+                        cout << "Librarian Not Found!\n";
+                    }
                     break;
-                case 7:
-                    l1.returnBook(b1);
+                }
+                case 4: {
+                    if (bookCount == 0) {
+                        cout << "No books available!\n";
+                        break;
+                    }
+                    int id;
+                    cout << "Enter ID of the book you want to search: ";
+                    cin >> id;
+                    int idx = findBookIndex(books, bookCount, id);
+                    if (idx != -1) {
+                        cout << "\nBook Found!\n";
+                        books[idx].displayInfo();
+                    }
+                    else {
+                        cout << "Book Not Found!\n";
+                    }
                     break;
+                }
+                case 5: {
+                    if (bookCount == 0) {
+                        cout << "No books available!\n";
+                        break;
+                    }
+                    int id;
+                    cout << "Enter ID of the book you want to update: ";
+                    cin >> id;
+                    int idx = findBookIndex(books, bookCount, id);
+                    if (idx != -1) {
+                   
+                        books[idx].update();
+                    }
+                    else {
+                        cout << "Book Not Found!\n";
+                    }
+                    break;
+                }
+                case 6: {
+                    if (bookCount == 0) {
+                        cout << "No books available!\n";
+                        break;
+                    }
+                    int id;
+                    cout << "Enter ID of the book to borrow: ";
+                    cin >> id;
+                    int idx = findBookIndex(books, bookCount, id);
+                    if (idx != -1) {
+                        books[idx].borrow();
+                    }
+                    else {
+                        cout << "Book Not Found!\n";
+                    }
+                    break;
+                }
+                case 7: {
+                    if (bookCount == 0) {
+                        cout << "No books available!\n";
+                        break;
+                    }
+                    int id;
+                    cout << "Enter ID of the book to return: ";
+                    cin >> id;
+                    int idx = findBookIndex(books, bookCount, id);
+                    if (idx != -1) {
+                        books[idx].returnBook();
+                    }
+                    else {
+                        cout << "Book Not Found!\n";
+                    }
+                    break;
+                }
                 case 8:
                     break;
                 default:
@@ -351,6 +475,8 @@ int fineCount = 0;
             } while (librarianChoice != 8);
             break;
         }
+
+        //  STUDENT MENU 
         case 2: {
             int studentChoice;
             do {
@@ -364,19 +490,79 @@ int fineCount = 0;
                 cin >> studentChoice;
 
                 switch (studentChoice) {
-                case 1:
-                 students[studentCount].registerstudent();
+                case 1: {
+                    if (studentCount >= MAX) {
+                        cout << "Student list is full!\n";
+                        break;
+                    }
+                    students[studentCount].registerstudent();
                     studentCount++;
                     break;
-                case 2:
-                    s1.displaystudent();
+                }
+                case 2: {
+                    if (studentCount == 0) {
+                        cout << "No students registered yet!\n";
+                        break;
+                    }
+                    int id;
+                    cout << "Enter Student ID to display: ";
+                    cin >> id;
+                    int idx = findStudentIndex(students, studentCount, id);
+                    if (idx != -1) {
+                        students[idx].displaystudent();
+                    }
+                    else {
+                        cout << "Student Not Found!\n";
+                    }
                     break;
-                case 3:
-                    s1.updatestudent();
+                }
+                case 3: {
+                    if (studentCount == 0) {
+                        cout << "No students registered yet!\n";
+                        break;
+                    }
+                    int id;
+                    cout << "Enter Student ID to update: ";
+                    cin >> id;
+                    int idx = findStudentIndex(students, studentCount, id);
+                    if (idx != -1) {
+                        cin.ignore();
+                        cout << "Student Found!\n";
+                        cout << "Enter New Student Name: ";
+                        string tmp;
+                        getline(cin, tmp);
+                        cout << "Enter New Department: ";
+                        string tmp2;
+                        getline(cin, tmp2);
+                        cout << "Enter New Semester: ";
+                        string tmp3;
+                        getline(cin, tmp3);
+                        students[idx] = student(id, tmp, tmp2, tmp3);
+                        cout << "Student Updated Successfully!\n";
+                    }
+                    else {
+                        cout << "Student Not Found!\n";
+                    }
                     break;
-                case 4:
-                    s1.searchstudent();
+                }
+                case 4: {
+                    if (studentCount == 0) {
+                        cout << "No students registered yet!\n";
+                        break;
+                    }
+                    int id;
+                    cout << "Enter Student ID to search: ";
+                    cin >> id;
+                    int idx = findStudentIndex(students, studentCount, id);
+                    if (idx != -1) {
+                        cout << "Student Found!\n";
+                        students[idx].displaystudent();
+                    }
+                    else {
+                        cout << "Student Not Found!\n";
+                    }
                     break;
+                }
                 case 5:
                     break;
                 default:
@@ -385,40 +571,73 @@ int fineCount = 0;
             } while (studentChoice != 5);
             break;
         }
-        case 3: {
 
+        // FINE MENU 
+        case 3: {
             int fineChoice;
             do {
-
-                cout << "\n FINE MENU \n";
+                cout << "\n----- FINE MENU -----\n";
                 cout << "1. Calculate Fine\n";
                 cout << "2. Display Fine\n";
-                cout << "3. Back\n";
+                cout << "3. Display All Fines\n";
+                cout << "4. Back\n";
                 cout << "Enter Choice: ";
                 cin >> fineChoice;
-                switch (fineChoice) {
-                case 1:
-                    f1.calclateFine();
-                    break;
-                case 2:
-                    f1.displayfine();
-                    break;
-                case 3:
-                    break;
 
+                switch (fineChoice) {
+                case 1: {
+                    if (fineCount >= MAX) {
+                        cout << "Fine list is full!\n";
+                        break;
+                    }
+                    fines[fineCount].calclateFine();
+                    fineCount++;
+                    break;
+                }
+                case 2: {
+                    if (fineCount == 0) {
+                        cout << "No fines recorded yet!\n";
+                        break;
+                    }
+                    int idx;
+                    cout << "Enter Fine record number (1 to " << fineCount << "): ";
+                    cin >> idx;
+                    if (idx >= 1 && idx <= fineCount) {
+                        fines[idx - 1].displayfine();
+                    }
+                    else {
+                        cout << "Invalid record number!\n";
+                    }
+                    break;
+                }
+                case 3: {
+                    if (fineCount == 0) {
+                        cout << "No fines recorded yet!\n";
+                        break;
+                    }
+                    for (int i = 0; i < fineCount; i++) {
+                        cout << "\n-- Fine Record " << (i + 1) << " --\n";
+                        fines[i].displayfine();
+                    }
+                    break;
+                }
+                case 4:
+                    break;
                 default:
                     cout << "Invalid Choice!\n";
                 }
-            } while (fineChoice != 3);
-
+            } while (fineChoice != 4);
             break;
         }
+
         case 4:
-            cout << "\nThank You For Using Library Management System.\n";
+            cout << "\nDobara phir aye ga !!\n";
             break;
+
         default:
             cout << "Invalid Choice!\n";
         }
     } while (choice != 4);
+
     return 0;
 }
