@@ -183,6 +183,8 @@ class student {
     }
 };
 
+// LIBRARIAN CLASS
+
 class Librarian
 {
 private:
@@ -229,27 +231,194 @@ public:
     }
 };
 
+// CLASS FINE 
+
+class Fine {
+    int fineId;
+    int studentId;
+    int bookId;
+    double amount;
+
+public:
+    Fine() {
+        fineId = 0;
+        studentId = 0;
+        bookId = 0;
+        amount = 0.0;
+    }
+
+    Fine(int id, int sid, int bid, double amt) {
+        fineId = id;
+        studentId = sid;
+        bookId = bid;
+        amount = amt;
+    }
+    void calclateFine() {
+        int daysLate;
+        cout << "Enter number of days late: ";
+        cin >> daysLate;
+        amount = daysLate * 200;
+        cout << "Fine Amount: Rs " << amount << endl;
+    }
+    void displayfine(){
+        cout << "Fine ID: " << fineId << endl;
+        cout << "Student ID: " << studentId << endl;
+        cout << "Book ID: " << bookId << endl;
+        cout << "Fine Amount: Rs " << amount << endl;
+    }
+};
+
 // MAIN FUNCTION
 int main() {
-// Create an object of the Book class
-    Book b1;
-    b1.addBook();
-    b1.search();
-    b1.update();
-    b1.borrow();
-    b1.returnBook();
-    // Create objects of the student class
-    // STUDENT S1 , S2
-    student s1 ;
-    student s2 ;
-    s1.registerstudent();
-    s1.displaystudent();
-    s1.updatestudent();
-    s1.searchstudent();
-    s2.registerstudent();
-    s2.displaystudent();
-    s2.updatestudent();
-    s2.searchstudent();
+ Book books[100];
+student students[100];
+Librarian librarians[100];
+Fine fines[100];
 
+int bookCount = 0;
+int studentCount = 0;
+int librarianCount = 0;
+int fineCount = 0;
+
+    int choice;
+
+    do {
+        cout << "LIBRARY MANAGEMENT SYSTEM\n";
+        cout << "1. Librarian Menu\n";
+        cout << "2. Student Menu\n";
+        cout << "3. Fine Menu\n";
+        cout << "4. Exit\n";
+        cout << "Enter Choice: ";
+        cin >> choice;
+
+        switch (choice) {
+
+        case 1: {
+            int librarianChoice;
+
+            do {
+                cout << "\n----- LIBRARIAN MENU -----\n";
+                cout << "1. Register Librarian\n";
+                cout << "2. Display Librarian\n";
+                cout << "3. Add Book\n";
+                cout << "4. Search Book\n";
+                cout << "5. Update Book\n";
+                cout << "6. Borrow Book\n";
+                cout << "7. Return Book\n";
+                cout << "8. Back\n";
+                cout << "Enter Choice: ";
+                cin >> librarianChoice;
+
+                switch (librarianChoice) {
+                case 1:
+                    librarians[librarianCount].registerLibrarian();
+                      librarianCount++;
+                    break;
+                case 2:
+                    l1.displayLibrarian();
+                    break; 
+                case 3:
+                   l1.addBook(books[bookCount]);
+                      bookCount++;
+                case 4:
+                   int index;
+                   cout << "Enter Librarian Number: ";
+                   cin >> index;
+
+                   if(index >= 1 && index <= librarianCount)
+                    {
+                     librarians[index-1].displayLibrarian();
+                    }
+                       else
+{
+                    cout << "Invalid Librarian!\n";
+}
+                    break;
+                case 5:
+                    l1.updateBook(b1);
+                    break;
+                case 6:
+                    l1.borrowBook(b1);
+                    break;
+                case 7:
+                    l1.returnBook(b1);
+                    break;
+                case 8:
+                    break;
+                default:
+                    cout << "Invalid Choice!\n";
+                }
+            } while (librarianChoice != 8);
+            break;
+        }
+        case 2: {
+            int studentChoice;
+            do {
+                cout << "\n----- STUDENT MENU -----\n";
+                cout << "1. Register Student\n";
+                cout << "2. Display Student\n";
+                cout << "3. Update Student\n";
+                cout << "4. Search Student\n";
+                cout << "5. Back\n";
+                cout << "Enter Choice: ";
+                cin >> studentChoice;
+
+                switch (studentChoice) {
+                case 1:
+                 students[studentCount].registerstudent();
+                    studentCount++;
+                    break;
+                case 2:
+                    s1.displaystudent();
+                    break;
+                case 3:
+                    s1.updatestudent();
+                    break;
+                case 4:
+                    s1.searchstudent();
+                    break;
+                case 5:
+                    break;
+                default:
+                    cout << "Invalid Choice!\n";
+                }
+            } while (studentChoice != 5);
+            break;
+        }
+        case 3: {
+
+            int fineChoice;
+            do {
+
+                cout << "\n FINE MENU \n";
+                cout << "1. Calculate Fine\n";
+                cout << "2. Display Fine\n";
+                cout << "3. Back\n";
+                cout << "Enter Choice: ";
+                cin >> fineChoice;
+                switch (fineChoice) {
+                case 1:
+                    f1.calclateFine();
+                    break;
+                case 2:
+                    f1.displayfine();
+                    break;
+                case 3:
+                    break;
+
+                default:
+                    cout << "Invalid Choice!\n";
+                }
+            } while (fineChoice != 3);
+
+            break;
+        }
+        case 4:
+            cout << "\nThank You For Using Library Management System.\n";
+            break;
+        default:
+            cout << "Invalid Choice!\n";
+        }
+    } while (choice != 4);
     return 0;
 }
