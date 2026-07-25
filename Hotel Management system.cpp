@@ -54,7 +54,7 @@ public:
              << setw(20) << name
              << setw(15) << phone
              << setw(10) << days
-             << "$" << getBill() << endl;
+             << "Rs" << getBill() << endl;
     }
 
     void save(ofstream &out) {
@@ -124,21 +124,21 @@ public:
         cin >> days;
 
         cout << "\nRoom Type\n";
-        cout << "1. Standard ($50/day)\n";
-        cout << "2. Deluxe ($100/day)\n";
-        cout << "3. Suite ($180/day)\n";
+        cout << "1. Standard (Rs5000/day)\n";
+        cout << "2. Deluxe (Rs10000/day)\n";
+        cout << "3. Suite (Rs18000/day)\n";
         cout << "Choose: ";
         cin >> type;
 
         switch(type) {
         case 1:
-            price = 50;
+            price = 5000;
             break;
         case 2:
-            price = 100;
+            price = 10000;
             break;
         case 3:
-            price = 180;
+            price = 18000;
             break;
         default:
             price = 50;
@@ -253,7 +253,7 @@ public:
             if(customers[i].getRoomNo() == room) {
 
                 cout << "\nCustomer Checked Out Successfully!\n";
-                cout << "Total Bill = $" << customers[i].getBill() << endl;
+                cout << "Total Bill = Rs" << customers[i].getBill() << endl;
 
                 customers.erase(customers.begin() + i);
 
@@ -280,7 +280,7 @@ public:
                 cout << "Customer Name : " << c.getName() << endl;
                 cout << "Room Number   : " << c.getRoomNo() << endl;
                 cout << "Days Stayed   : " << c.getDays() << endl;
-                cout << "Total Bill    : $" << c.getBill() << endl;
+                cout << "Total Bill    : Rs" << c.getBill() << endl;
 
                 return;
             }
